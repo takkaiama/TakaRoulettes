@@ -16,7 +16,7 @@ jobs:
       with:
         python-version: 3.11
 
-    - name: Install dependencies
+    - name: Install system dependencies
       run: |
         sudo apt update
         sudo apt install -y \
@@ -39,6 +39,10 @@ jobs:
 
     - name: Install buildozer
       run: pip install buildozer cython
+
+    - name: Accept Android licenses
+      run: |
+        yes | buildozer android sdk
 
     - name: Build APK
       run: buildozer android debug
